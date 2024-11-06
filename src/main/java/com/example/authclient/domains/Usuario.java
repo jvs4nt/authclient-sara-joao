@@ -16,11 +16,12 @@ import java.util.List;
 @Builder
 @Entity
 @With
-@Table(name = "Usuario")
+@Table(name = "hte_usuario")
 public class Usuario implements UserDetails {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "usuario_seq")
+    @SequenceGenerator(name = "usuario_seq", sequenceName = "usuario_seq", allocationSize = 1)
     private Integer id;
 
     @Column(unique = true)

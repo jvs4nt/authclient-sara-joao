@@ -20,3 +20,9 @@ logging:
 
 jwt:
   secret-key: KJMOSStuFUHKHHJBughitgGUYFUFvUGugUgYfvTYdcYdcf4681pqnabz987frfdgrjfoeir56468r4eagtf654efg3sa8a46gehj6io746sw87gh3bgfh4dty867js1454segr5r45685r4gt86e7g43srygr8h4shygjuyy
+
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
