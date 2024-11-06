@@ -35,7 +35,7 @@ public class SpringSecurityConfiguration {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorizationManagerRequestMatcherRegistry ->
                         authorizationManagerRequestMatcherRegistry
-                                .requestMatchers(HttpMethod.POST, "/auth**").permitAll()
+                                .requestMatchers(HttpMethod.POST, "/auth/**").permitAll()
                                 .requestMatchers("/aluno/**").hasRole("ALUNO")
                                 .requestMatchers(HttpMethod.GET, "/auth").hasRole("USER")
                                 .anyRequest().permitAll() //demais endpoints precisam de autenticação

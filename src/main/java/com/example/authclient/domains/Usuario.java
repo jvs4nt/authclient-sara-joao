@@ -37,20 +37,18 @@ public class Usuario implements UserDetails {
     // um fluxo de autoridades e depois coleto numa lista
     //Lista de papéis e lista de autoridades
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        List<SimpleGrantedAuthority> roles = this.listaPermissoes.stream()
-                .map(Permissao::getEnumsPermissao)
-                .map(RoleEnum::name)
-                .map(SimpleGrantedAuthority::new)
+        return this.listaPermissoes.stream()
+                .flatMap(permissao -> {
+                    List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+                    authorities.add(new SimpleGrantedAuthority(permissao.getEnumsPermissao().name()));
+                    authorities.addAll(permissao.getEnumsPermissao().getAutoridades().stream()
+                            .map(SimpleGrantedAuthority::new)
+                            .toList());
+                    return authorities.stream();
+                })
                 .toList();
-        List<SimpleGrantedAuthority> autoridades = new ArrayList<>(this.listaPermissoes.stream()
-                .map(Permissao::getEnumsPermissao)
-                .map(RoleEnum::getAutoridades)
-                .flatMap(List::stream)
-                .map(SimpleGrantedAuthority::new)
-                .toList());
-        autoridades.addAll(roles);
-        return autoridades;
     }
+
 
     @Override
     public String getPassword() {

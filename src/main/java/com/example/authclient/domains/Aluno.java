@@ -10,6 +10,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.UUID;
+
 @Data
 @Builder
 @AllArgsConstructor
@@ -19,7 +21,7 @@ public class Aluno {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private Integer id;
+    private UUID id;
 
     private String ra;
 
